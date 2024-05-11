@@ -1,14 +1,8 @@
 import React from "react";
-import { useRouter } from "next/router";
+import LoginComp from "@/components/LoginComp";
 
 function Login() {
-  const router = useRouter();
-  return (
-    <div>
-      Login
-      <p onClick={() => router.push("/admin/dashboard")}>Redirect</p>
-    </div>
-  );
+  return <LoginComp />;
 }
 
 export default Login;

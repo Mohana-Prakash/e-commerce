@@ -1,4 +1,5 @@
 import React from "react";
+import "../app/globals.css";
 import { Provider } from "react-redux";
 import store from "../redux/store";
 import { ToastContainer } from "react-toastify";
