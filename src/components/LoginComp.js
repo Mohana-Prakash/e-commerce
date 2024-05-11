@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Input, useCommonRouter } from "./customComp";
+import Link from "next/link";
 
 function LoginComp() {
   const { goToPage } = useCommonRouter();
@@ -33,9 +34,9 @@ function LoginComp() {
         <span style={{ marginRight: "10px", cursor: "pointer" }} href="">
           Forgot?
         </span>
-        <a className="anchor_tag" href="/auth/register">
+        <Link href="/auth/register" className="anchor_tag">
           Sign Up
-        </a>
+        </Link>
       </div>
     </div>
     // https://www.youtube.com/watch?v=p1GmFCGuVjw
