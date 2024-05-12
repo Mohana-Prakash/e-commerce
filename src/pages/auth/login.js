@@ -1,5 +1,5 @@
 import React from "react";
-import LoginComp from "@/components/LoginComp";
+import LoginComp from "@/components/auth/LoginComp";
 
 function Login() {
   return <LoginComp />;

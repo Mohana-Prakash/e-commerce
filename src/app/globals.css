@@ -5,18 +5,33 @@
   --dark_navy: #141e46;
 }
 body {
-  height: 100vh;
+  /* height: 100%; */
 }
 #__next {
-  background-color: var(--dark_navy);
-  height: 100vh;
+  /* background-color: var(--dark_navy); */
+  /* height: 100%; */
+  /* background: url("https://png.pngtree.com/background/20230612/original/pngtree-green-and-lush-trees-and-moss-are-coming-out-of-green-picture-image_3176311.jpg"); */
+}
+/* .login_container {
+  background: url("https://png.pngtree.com/background/20230612/original/pngtree-green-and-lush-trees-and-moss-are-coming-out-of-green-picture-image_3176311.jpg");
+} */
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: var(--dark_green);
 }
 .login_div {
   width: 30%;
-  margin: auto;
-  /* border: solid 1px gray; */
+  margin: 1rem auto;
+  border: solid 1px #e5e5e5;
   padding: 2rem;
-  background: url("/public/assets/login_bg.jpg");
+  border-radius: 10px;
+  /* background: url("/public/assets/login_bg.jpg"); */
+}
+.bg_light {
+  background-color: white;
+}
+.svg_icon {
+  color: black;
+  cursor: pointer;
 }
 .custom_input {
   border: solid 1px lightgray;
@@ -25,7 +40,12 @@ body {
   padding: 14px 10px;
   width: 100%;
   color: black;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0 0.5rem;
+}
+.password_input {
+  border: none;
+  outline: none;
+  width: 100%;
 }
 .custom_button {
   width: 100%;
@@ -35,12 +55,17 @@ body {
   padding: 14px;
   background-color: var(--dark_green);
   color: white;
+  margin: 0.5rem 0 1rem;
 }
 .anchor_tag {
   text-decoration: none;
-  color: white;
+  color: gray;
 }
 .login_text {
   font-size: 26px;
   margin-bottom: 2rem;
+}
+.register_div {
+  width: 40%;
+  margin: 1rem auto;
 }
