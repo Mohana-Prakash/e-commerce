@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import { Button, Input, useCommonRouter } from "../common/customComp";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { Button, Input } from "../common/customComp";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { passRegExp } from "../common/constant";
+import { gapi } from "gapi-script";
+import GoogleOauthLogin from "./google_login";
+import GoogleOauthLogout from "./google_logout";
 
 function LoginComp() {
-  const { goToPage } = useCommonRouter();
   const [showPassword, setshowPassword] = useState("password");
-  const inputHandler = () => {};
+  const clientId =
+    "448976885238-d5af43tckj241lecknqjdjmmaql9oov3.apps.googleusercontent.com";
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -35,8 +47,6 @@ function LoginComp() {
     },
   });
 
-  console.log(formik);
-
   return (
     // <div className="login_container">
     <div className="login_div">
@@ -46,6 +56,8 @@ function LoginComp() {
       <p className="login_text text-center text-secondary">
         Log in to your account
       </p>
+      <GoogleOauthLogin />
+      <GoogleOauthLogout />
       <Input
         type="text"
         name="userName"
@@ -85,14 +97,13 @@ function LoginComp() {
         ) : null}
       </p>
       <Button buttonText="Log In" eventHandler={formik.handleSubmit} />
-
-      <div className="mt-2 d-flex justify-content-end text-secondary">
-        <span style={{ marginRight: "10px", cursor: "pointer" }} href="">
-          Forgot?
+      <div className="d-flex justify-content-end text-secondary">
+        <span style={{ cursor: "pointer" }} href="">
+          Forgot Password?
         </span>
-        <Link href="/auth/register" className="anchor_tag">
+        {/* <Link href="/auth/register" className="anchor_tag">
           Sign Up
-        </Link>
+        </Link> */}
       </div>
     </div>
     // </div>
