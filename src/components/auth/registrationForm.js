@@ -37,7 +37,7 @@ function RegistrationForm() {
     <div className="register_div">
       <div>
         <p className="login_text text-center text-secondary">
-          Looks like you're new here!
+          Looks like you are new here!
         </p>
         {registration_arr.map((e) => {
           return (
