@@ -1,8 +1,7 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
 
-const clientId =
-  "448976885238-d5af43tckj241lecknqjdjmmaql9oov3.apps.googleusercontent.com";
+const clientId = process.env.CLIENT_ID;
 
 function GoogleOauthLogin() {
   const onSuccess = (res) => {
