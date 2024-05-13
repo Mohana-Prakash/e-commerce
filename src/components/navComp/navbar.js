@@ -112,7 +112,10 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}>
       {menuArr.map((e) => {
         return (
-          <MenuItem onClick={() => handleMenuClose(e.path)} className="p-2">
+          <MenuItem
+            key={e.name}
+            onClick={() => handleMenuClose(e.path)}
+            className="p-2">
             {e.icon}
             <span className="mx-3">{e.name}</span>
           </MenuItem>

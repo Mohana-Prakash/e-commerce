@@ -10,6 +10,6 @@ function Contact() {
 }
 
 Contact.getLayout = (page) => (
-  <BuyerLayout children={page} pageName="contact" />
+  <BuyerLayout pageName="contact">{page}</BuyerLayout>
 );
 export default Contact;

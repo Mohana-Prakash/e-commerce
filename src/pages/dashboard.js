@@ -6,6 +6,6 @@ function Dashboard() {
 }
 
 Dashboard.getLayout = (page) => (
-  <BuyerLayout children={page} pageName="dashboard" />
+  <BuyerLayout pageName="dashboard">{page}</BuyerLayout>
 );
 export default Dashboard;

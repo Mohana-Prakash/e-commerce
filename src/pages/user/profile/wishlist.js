@@ -10,6 +10,6 @@ function WishList() {
 }
 
 WishList.getLayout = (page) => (
-  <BuyerLayout children={page} pageName="wishlist" />
+  <BuyerLayout pageName="wishlist">{page}</BuyerLayout>
 );
 export default WishList;

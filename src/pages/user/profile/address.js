@@ -10,6 +10,6 @@ function Address() {
 }
 
 Address.getLayout = (page) => (
-  <BuyerLayout children={page} pageName="address" />
+  <BuyerLayout pageName="address">{page}</BuyerLayout>
 );
 export default Address;

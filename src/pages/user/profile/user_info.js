@@ -10,6 +10,6 @@ function UserInfo() {
 }
 
 UserInfo.getLayout = (page) => (
-  <BuyerLayout children={page} pageName="user_info" />
+  <BuyerLayout pageName="user_info">{page}</BuyerLayout>
 );
 export default UserInfo;

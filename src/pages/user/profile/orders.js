@@ -9,5 +9,7 @@ function Orders() {
   );
 }
 
-Orders.getLayout = (page) => <BuyerLayout children={page} pageName="orders" />;
+Orders.getLayout = (page) => (
+  <BuyerLayout pageName="orders">{page}</BuyerLayout>
+);
 export default Orders;
