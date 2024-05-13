@@ -30,7 +30,10 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #555 !important;
 }
-.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+/* .css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: var(--dark_green) !important;
+} */
+.navbar_div {
   background-color: var(--dark_green) !important;
 }
 .login_div {
