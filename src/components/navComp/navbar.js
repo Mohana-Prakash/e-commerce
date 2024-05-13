@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import CallIcon from "@mui/icons-material/Call";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,6 +16,11 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import AnchorTemporaryDrawer from "./drawer";
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginModal from "../modals/loginModal";
+import { menuArr } from "../common/constant";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,6 +65,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const router = useRouter();
+  const { data: session } = useSession();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -71,9 +80,14 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (path = null) => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    if (session && path) {
+      router.push(path);
+    } else {
+      setOpenModal(true);
+    }
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -95,10 +109,30 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      onClose={handleMenuClose}>
+      {menuArr.map((e) => {
+        return (
+          <MenuItem onClick={() => handleMenuClose(e.path)} className="p-2">
+            {e.icon}
+            <span className="mx-3">{e.name}</span>
+          </MenuItem>
+        );
+      })}
+
+      {/* <MenuItem onClick={handleMenuClose} className="p-2">
+        <InventoryIcon className="svg_icon" />
+        <span className="mx-3">Orders</span>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose} className="p-2">
+        <FavoriteBorderIcon className="svg_icon" />
+        <span className="mx-3">Wishlist</span>
+      </MenuItem> */}
+      {session && (
+        <MenuItem onClick={() => signOut()} className="p-2">
+          <LogoutIcon className="svg_icon" />
+          <span className="mx-3">Logout</span>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -117,39 +151,42 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      {/* <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem> */}
+      onClose={handleMobileMenuClose}>
       <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
-        >
+          color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem
+        onClick={handleProfileMenuOpen}
+        // onClick={() => router.push("/profile")}
+      >
         <IconButton
           size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
+      </MenuItem>
+      <MenuItem onClick={() => router.push("/user/contact")}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit">
+          <CallIcon />
+        </IconButton>
+        <p>Contact</p>
       </MenuItem>
     </Menu>
   );
@@ -163,16 +200,15 @@ export default function PrimarySearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
+            sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
+            sx={{ display: { xs: "none", sm: "block" }, cursor: "pointer" }}
+            onClick={() => router.push("/dashboard")}>
             {/* Tanjore Nature Nest */}E Commerce
           </Typography>
           <Search>
@@ -180,7 +216,7 @@ export default function PrimarySearchAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search for products"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
@@ -189,8 +225,7 @@ export default function PrimarySearchAppBar() {
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
-            >
+              color="inherit">
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -202,12 +237,19 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+              // onClick={() => router.push("/profile")}
+              color="inherit">
               <AccountCircle />
             </IconButton>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+              onClick={() => router.push("/user/contact")}>
+              <CallIcon />
+            </IconButton>
           </Box>
-          <AnchorTemporaryDrawer />
+          {!session && <AnchorTemporaryDrawer />}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -215,8 +257,7 @@ export default function PrimarySearchAppBar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <MoreIcon />
             </IconButton>
           </Box>
@@ -224,6 +265,9 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {openModal && (
+        <LoginModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
     </Box>
   );
 }

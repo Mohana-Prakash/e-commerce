@@ -5,24 +5,13 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { passRegExp } from "../common/constant";
-import { gapi } from "gapi-script";
-import GoogleOauthLogin from "./google_login";
-import GoogleOauthLogout from "./google_logout";
+import GoogleButton from "./google_btn";
+import { useSession } from "next-auth/react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function LoginComp() {
+function LoginComp({ modal, handleClose = null }) {
   const [showPassword, setshowPassword] = useState("password");
-  const clientId = process.env.CLIENT_ID;
-
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "",
-      });
-    }
-    gapi.load("client:auth2", start);
-  }, []);
-
+  const { data: session } = useSession();
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -43,69 +32,82 @@ function LoginComp() {
 
     onSubmit: (values) => {
       console.log(values);
+      handleClose();
     },
   });
 
   return (
-    // <div className="login_container">
-    <div className="login_div">
-      <div className="w-50 m-auto">
-        <img className="w-100" src="/assets/login_logo.png" alt="login_logo" />
-      </div>
-      <p className="login_text text-center text-secondary">
-        Log in to your account
-      </p>
-      <GoogleOauthLogin />
-      <GoogleOauthLogout />
-      <Input
-        type="text"
-        name="userName"
-        eventHandler={formik.handleChange}
-        value={formik.values.userName}
-        placeholder="Email / Mobile No."
-      />
-      <p>
-        {formik.errors.userName && formik.touched.userName ? (
-          <span className="text-danger">{formik.errors.userName}</span>
-        ) : null}
-      </p>
-      <div className="d-flex jsutify-content-between align-items-center w-100 bg_light custom_input">
-        <input
-          className="password_input"
-          type={showPassword}
-          name="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          placeholder="Password"
-        />
-        {showPassword === "text" ? (
-          <VisibilityOffIcon
-            className="svg_icon"
-            onClick={() => setshowPassword("password")}
-          />
-        ) : (
-          <VisibilityIcon
-            className="svg_icon"
-            onClick={() => setshowPassword("text")}
-          />
+    <div className={modal ? "login_div_modal" : "login_div"}>
+      <>
+        {!session && (
+          <>
+            {modal && (
+              <div className="d-flex justify-content-end" onClick={handleClose}>
+                <HighlightOffIcon className="svg_icon" />
+              </div>
+            )}
+            <div className="w-50 m-auto">
+              <img
+                className="w-100"
+                src="/assets/login_logo.png"
+                alt="login_logo"
+              />
+            </div>
+            <p className="login_text text-center text-secondary">
+              Log in to your account
+            </p>
+            <Input
+              type="text"
+              name="userName"
+              eventHandler={formik.handleChange}
+              value={formik.values.userName}
+              placeholder="Email / Mobile No."
+            />
+            <p>
+              {formik.errors.userName && formik.touched.userName ? (
+                <span className="text-danger">{formik.errors.userName}</span>
+              ) : null}
+            </p>
+            <div className="d-flex justify-content-between align-items-center w-100 bg_light custom_input">
+              <input
+                className="password_input"
+                type={showPassword}
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                placeholder="Password"
+              />
+              {showPassword === "text" ? (
+                <VisibilityOffIcon
+                  className="svg_icon"
+                  onClick={() => setshowPassword("password")}
+                />
+              ) : (
+                <VisibilityIcon
+                  className="svg_icon"
+                  onClick={() => setshowPassword("text")}
+                />
+              )}
+            </div>
+            <p>
+              {formik.errors.password && formik.touched.password ? (
+                <span className="text-danger">{formik.errors.password}</span>
+              ) : null}
+            </p>
+            <Button buttonText="Log In" eventHandler={formik.handleSubmit} />
+            <div className="d-flex justify-content-end text-secondary">
+              <span style={{ cursor: "pointer" }} href="">
+                Forgot Password?
+              </span>
+            </div>
+            <p className="text-center">
+              <b>OR</b>
+            </p>
+          </>
         )}
-      </div>
-      <p>
-        {formik.errors.password && formik.touched.password ? (
-          <span className="text-danger">{formik.errors.password}</span>
-        ) : null}
-      </p>
-      <Button buttonText="Log In" eventHandler={formik.handleSubmit} />
-      <div className="d-flex justify-content-end text-secondary">
-        <span style={{ cursor: "pointer" }} href="">
-          Forgot Password?
-        </span>
-        {/* <Link href="/auth/register" className="anchor_tag">
-          Sign Up
-        </Link> */}
-      </div>
+        <GoogleButton />
+      </>
     </div>
-    // </div>
     // https://www.youtube.com/watch?v=p1GmFCGuVjw
   );
 }

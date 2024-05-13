@@ -25,11 +25,9 @@ export default function AnchorTemporaryDrawer() {
             size="md"
             anchor="right"
             open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
+            onClose={toggleDrawer(anchor, false)}>
             {state.Login && <LoginComp />}
             {state.Register && <RegistrationForm />}
-            {/* <LoginComp /> */}
           </Drawer>
         </React.Fragment>
       ))}

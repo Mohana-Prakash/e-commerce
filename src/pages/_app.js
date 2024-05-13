@@ -7,16 +7,19 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <Provider store={store}>
-      <Head>
-        <title>Tanjore Nature Nest</title>
-      </Head>
-      <ToastContainer />
-      {getLayout(<Component {...pageProps} />)}
+      <SessionProvider session={pageProps.session}>
+        <Head>
+          <title>Tanjore Nature Nest</title>
+        </Head>
+        <ToastContainer />
+        {getLayout(<Component {...pageProps} />)}
+      </SessionProvider>
     </Provider>
   );
 }

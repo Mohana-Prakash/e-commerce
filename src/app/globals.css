@@ -34,13 +34,17 @@ body {
   background-color: var(--dark_green);
 }
 .login_div {
+  width: 100%;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.login_div_modal {
   /* width: 30%; */
   width: 100%;
   /* margin: 1rem auto; */
   /* border: solid 1px #e5e5e5; */
   padding: 2rem;
   border-radius: 10px;
-  /* background: url("/public/assets/login_bg.jpg"); */
 }
 .bg_light {
   background-color: white;
@@ -48,6 +52,7 @@ body {
 .svg_icon {
   color: black;
   cursor: pointer;
+  font-size: 22px;
 }
 .custom_input {
   border: solid 1px lightgray;
@@ -87,15 +92,73 @@ body {
 }
 .nav_menu_btn {
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: capitalize;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  background-color: var(--light_green);
+  border-radius: 5px;
+  margin-left: 1rem;
 }
 .error_text {
   color: red;
   font-size: 14px;
   font-weight: 600;
 }
-/* .google_btn button {
-  background-color: red;
-} */
+.sub_menu {
+  border-bottom: solid 1px #e5e5e5;
+  padding: 5px 0;
+}
+.buyer_layout {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 2rem;
+}
+.sidebar_div {
+}
+.children_div {
+  padding: 1rem;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 2px rgba(0, 0, 0, 0.12);
+}
+.menu_div {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 2px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.profile_main_menu {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: gray;
+  letter-spacing: 0.7px;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.profile_main_menu_active {
+  background-color: var(--dark_navy);
+  border-radius: 5px;
+  color: white;
+}
+.profile_sub_menu {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: gray;
+  width: 70%;
+  margin: 10px auto;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile_sub_menu_active {
+  background-color: var(--dark_navy);
+  border-radius: 5px;
+  color: white;
+}
