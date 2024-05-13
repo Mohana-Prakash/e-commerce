@@ -21,7 +21,7 @@ function Sidebar() {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ width: "100%" }}>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" sx={{ backgroundColor: "red" }}>
@@ -42,7 +42,8 @@ function Sidebar() {
                   ${pathname === e.path && "profile_main_menu_active"}
                      profile_main_menu
                 `}
-                onClick={() => routeHandler(e.path)}>
+                onClick={() => routeHandler(e.path)}
+              >
                 <span>{e.icon}</span>
                 <b className="mx-3">{e.menu}</b>
               </p>
@@ -54,7 +55,8 @@ function Sidebar() {
                   ${pathname === a.path && "profile_sub_menu_active"}
                   profile_sub_menu
                 `}
-                    onClick={() => routeHandler(a.path)}>
+                    onClick={() => routeHandler(a.path)}
+                  >
                     {a.menu}
                   </p>
                 );

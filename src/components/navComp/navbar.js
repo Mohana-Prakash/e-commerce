@@ -109,13 +109,15 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMenuOpen}
-      onClose={handleMenuClose}>
+      onClose={handleMenuClose}
+    >
       {menuArr.map((e) => {
         return (
           <MenuItem
             key={e.name}
             onClick={() => handleMenuClose(e.path)}
-            className="p-2">
+            className="p-2"
+          >
             {e.icon}
             <span className="mx-3">{e.name}</span>
           </MenuItem>
@@ -154,12 +156,14 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}>
-      <MenuItem>
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem onClick={() => router.push("/user/profile/notifications")}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit">
+          color="inherit"
+        >
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -175,7 +179,8 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit">
+          color="inherit"
+        >
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
@@ -186,7 +191,8 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit">
+          color="inherit"
+        >
           <CallIcon />
         </IconButton>
         <p>Contact</p>
@@ -203,7 +209,8 @@ export default function PrimarySearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}>
+            sx={{ mr: 2 }}
+          >
             <MenuIcon />
           </IconButton>
           <Typography
@@ -211,7 +218,8 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" }, cursor: "pointer" }}
-            onClick={() => router.push("/dashboard")}>
+            onClick={() => router.push("/dashboard")}
+          >
             {/* Tanjore Nature Nest */}E Commerce
           </Typography>
           <Search>
@@ -228,7 +236,9 @@ export default function PrimarySearchAppBar() {
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit">
+              color="inherit"
+              onClick={() => router.push("/user/profile/notifications")}
+            >
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -241,14 +251,16 @@ export default function PrimarySearchAppBar() {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               // onClick={() => router.push("/profile")}
-              color="inherit">
+              color="inherit"
+            >
               <AccountCircle />
             </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              onClick={() => router.push("/user/contact")}>
+              onClick={() => router.push("/user/contact")}
+            >
               <CallIcon />
             </IconButton>
           </Box>
@@ -260,7 +272,8 @@ export default function PrimarySearchAppBar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit">
+              color="inherit"
+            >
               <MoreIcon />
             </IconButton>
           </Box>

@@ -37,15 +37,15 @@ function LoginComp({ modal, handleClose = null }) {
   });
 
   return (
-    <div className={modal ? "login_div_modal" : "login_div"}>
-      <>
+    <>
+      {modal && (
+        <div className="d-flex justify-content-end" onClick={handleClose}>
+          <HighlightOffIcon className="svg_icon" />
+        </div>
+      )}
+      <div className={modal ? "login_div_modal" : "login_div"}>
         {!session && (
           <>
-            {modal && (
-              <div className="d-flex justify-content-end" onClick={handleClose}>
-                <HighlightOffIcon className="svg_icon" />
-              </div>
-            )}
             <div className="w-50 m-auto">
               <img
                 className="w-100"
@@ -95,19 +95,20 @@ function LoginComp({ modal, handleClose = null }) {
               ) : null}
             </p>
             <Button buttonText="Log In" eventHandler={formik.handleSubmit} />
-            <div className="d-flex justify-content-end text-secondary">
-              <span style={{ cursor: "pointer" }} href="">
-                Forgot Password?
-              </span>
-            </div>
+
             <p className="text-center">
               <b>OR</b>
             </p>
           </>
         )}
         <GoogleButton />
-      </>
-    </div>
+        <div className="d-flex justify-content-end text-secondary">
+          <span style={{ cursor: "pointer" }} href="">
+            Forgot Password?
+          </span>
+        </div>
+      </div>
+    </>
     // https://www.youtube.com/watch?v=p1GmFCGuVjw
   );
 }

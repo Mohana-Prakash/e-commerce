@@ -2,6 +2,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 export const passRegExp =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
@@ -57,6 +58,11 @@ export const profileMenuArr = [
     menu: "wishlist",
     icon: <FavoriteBorderIcon />,
     path: "/user/profile/wishlist",
+  },
+  {
+    menu: "notification",
+    icon: <NotificationsIcon />,
+    path: "/user/profile/notifications",
   },
   {
     menu: "logout",
