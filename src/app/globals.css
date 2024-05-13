@@ -31,7 +31,7 @@ body {
   background: #555 !important;
 }
 .css-hip9hq-MuiPaper-root-MuiAppBar-root {
-  background-color: var(--dark_green);
+  background-color: var(--dark_green) !important;
 }
 .login_div {
   width: 100%;
