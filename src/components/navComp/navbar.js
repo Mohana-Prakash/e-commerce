@@ -82,9 +82,9 @@ export default function PrimarySearchAppBar() {
 
   const profile_router = () => {
     // if (session) {
-    //   router.push("/user/profile/user_info");
+    router.push("/user/profile/user_info");
     // } else {
-    setOpenModal(true);
+    //   setOpenModal(true);
     // }
   };
 
