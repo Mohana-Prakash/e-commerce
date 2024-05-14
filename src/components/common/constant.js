@@ -3,6 +3,7 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export const passRegExp =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
@@ -58,6 +59,11 @@ export const profileMenuArr = [
     menu: "wishlist",
     icon: <FavoriteBorderIcon />,
     path: "/user/profile/wishlist",
+  },
+  {
+    menu: "my cart",
+    icon: <AddShoppingCartIcon />,
+    path: "/user/profile/cart",
   },
   {
     menu: "notification",

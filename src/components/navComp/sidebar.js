@@ -13,10 +13,7 @@ function Sidebar() {
   const pathname = usePathname();
 
   const routeHandler = async (path) => {
-    // alert("logout");
-    // await
-    router.push(path);
-    // signOut().then((e) => console.log(e));
+    signOut({ redirect: false }).then((e) => console.log(e));
   };
 
   return (
@@ -42,8 +39,7 @@ function Sidebar() {
                   ${pathname === e.path && "profile_main_menu_active"}
                      profile_main_menu
                 `}
-                onClick={() => routeHandler(e.path)}
-              >
+                onClick={() => routeHandler(e.path)}>
                 <span>{e.icon}</span>
                 <b className="mx-3">{e.menu}</b>
               </p>
@@ -55,8 +51,7 @@ function Sidebar() {
                   ${pathname === a.path && "profile_sub_menu_active"}
                   profile_sub_menu
                 `}
-                    onClick={() => routeHandler(a.path)}
-                  >
+                    onClick={() => routeHandler(a.path)}>
                     {a.menu}
                   </p>
                 );

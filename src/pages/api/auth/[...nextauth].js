@@ -12,6 +12,7 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  callbackUrl: false,
   // callbacks: {
   //   async signIn({ account, profile }) {
   //     console.log("eeeeeeeeeeee");
