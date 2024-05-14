@@ -27,10 +27,18 @@ export const Input = ({ type, name, eventHandler, value, placeholder }) => {
   );
 };
 
-export const Button = ({ buttonText, eventHandler }) => {
+export const Button = ({ buttonText, eventHandler, icon }) => {
   return (
     <button className="custom_button" onClick={eventHandler}>
-      {buttonText}
+      {icon}
+      <span className="mx-3">{buttonText}</span>
     </button>
   );
+};
+
+export const dynamicRouteHandler = (router, path, obj) => {
+  router.push({
+    pathname: path,
+    query: obj,
+  });
 };

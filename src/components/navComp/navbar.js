@@ -76,70 +76,76 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
-  const handleMenuClose = (path = null) => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-    if (session && path) {
-      router.push(path);
+  const profile_router = () => {
+    if (session) {
+      router.push("/user/profile/user_info");
     } else {
       setOpenModal(true);
     }
   };
+
+  // const handleMenuClose = (path = null) => {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  //   if (session && path) {
+  //     router.push(path);
+  //   } else {
+  //     setOpenModal(true);
+  //   }
+  // };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {menuArr.map((e) => {
-        return (
-          <MenuItem
-            key={e.name}
-            onClick={() => handleMenuClose(e.path)}
-            className="p-2"
-          >
-            {e.icon}
-            <span className="mx-3">{e.name}</span>
-          </MenuItem>
-        );
-      })}
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}>
+  //     {menuArr.map((e) => {
+  //       return (
+  //         <MenuItem
+  //           key={e.name}
+  //           onClick={() => handleMenuClose(e.path)}
+  //           className="p-2">
+  //           {e.icon}
+  //           <span className="mx-3">{e.name}</span>
+  //         </MenuItem>
+  //       );
+  //     })}
 
-      {/* <MenuItem onClick={handleMenuClose} className="p-2">
-        <InventoryIcon className="svg_icon" />
-        <span className="mx-3">Orders</span>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose} className="p-2">
-        <FavoriteBorderIcon className="svg_icon" />
-        <span className="mx-3">Wishlist</span>
-      </MenuItem> */}
-      {session && (
-        <MenuItem onClick={() => signOut()} className="p-2">
-          <LogoutIcon className="svg_icon" />
-          <span className="mx-3">Logout</span>
-        </MenuItem>
-      )}
-    </Menu>
-  );
+  //     {/* <MenuItem onClick={handleMenuClose} className="p-2">
+  //       <InventoryIcon className="svg_icon" />
+  //       <span className="mx-3">Orders</span>
+  //     </MenuItem>
+  //     <MenuItem onClick={handleMenuClose} className="p-2">
+  //       <FavoriteBorderIcon className="svg_icon" />
+  //       <span className="mx-3">Wishlist</span>
+  //     </MenuItem> */}
+  //     {session && (
+  //       <MenuItem onClick={() => signOut()} className="p-2">
+  //         <LogoutIcon className="svg_icon" />
+  //         <span className="mx-3">Logout</span>
+  //       </MenuItem>
+  //     )}
+  //   </Menu>
+  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -156,14 +162,13 @@ export default function PrimarySearchAppBar() {
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      // onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={() => router.push("/user/profile/notifications")}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
-        >
+          color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -171,7 +176,7 @@ export default function PrimarySearchAppBar() {
         <p>Notifications</p>
       </MenuItem>
       <MenuItem
-        onClick={handleProfileMenuOpen}
+        onClick={profile_router}
         // onClick={() => router.push("/profile")}
       >
         <IconButton
@@ -179,8 +184,7 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
@@ -191,8 +195,7 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <CallIcon />
         </IconButton>
         <p>Contact</p>
@@ -209,8 +212,7 @@ export default function PrimarySearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
+            sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography
@@ -218,8 +220,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" }, cursor: "pointer" }}
-            onClick={() => router.push("/dashboard")}
-          >
+            onClick={() => router.push("/dashboard")}>
             {/* Tanjore Nature Nest */}E Commerce
           </Typography>
           <Search>
@@ -237,8 +238,7 @@ export default function PrimarySearchAppBar() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              onClick={() => router.push("/user/profile/notifications")}
-            >
+              onClick={() => router.push("/user/profile/notifications")}>
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -249,18 +249,16 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={profile_router}
               // onClick={() => router.push("/profile")}
-              color="inherit"
-            >
+              color="inherit">
               <AccountCircle />
             </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              onClick={() => router.push("/user/contact")}
-            >
+              onClick={() => router.push("/user/contact")}>
               <CallIcon />
             </IconButton>
           </Box>
@@ -272,15 +270,14 @@ export default function PrimarySearchAppBar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <MoreIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMenu} */}
       {openModal && (
         <LoginModal openModal={openModal} setOpenModal={setOpenModal} />
       )}

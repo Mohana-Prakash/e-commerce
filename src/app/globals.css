@@ -6,8 +6,10 @@
 }
 body {
   /* height: 100%; */
+  background-color: #f1f3f6 !important;
 }
 #__next {
+  /* background-color: #f1f3f6; */
   /* background-color: var(--dark_navy); */
   /* height: 100%; */
   /* background: url("https://png.pngtree.com/background/20230612/original/pngtree-green-and-lush-trees-and-moss-are-coming-out-of-green-picture-image_3176311.jpg"); */
@@ -80,6 +82,10 @@ body {
   background-color: var(--dark_green);
   color: white;
   margin: 0.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 }
 .anchor_tag {
   text-decoration: none;
@@ -117,18 +123,26 @@ body {
 .buyer_layout {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 2rem;
 }
 .sidebar_div {
 }
+.sub_nav_div {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 2px rgba(0, 0, 0, 0.12);
+}
 .children_div {
   padding: 1rem;
+  background-color: white;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 2px rgba(0, 0, 0, 0.12);
 }
 .menu_div {
   margin-top: 1rem;
   padding: 1rem;
+  background-color: white;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 2px rgba(0, 0, 0, 0.12);
   cursor: pointer;
@@ -159,18 +173,64 @@ body {
   display: flex;
   align-items: center;
 }
-
 .profile_sub_menu_active {
   background-color: rgb(0 0 0 / 15%);
   border-radius: 5px;
   color: var(--dark_green);
 }
-
+.image_menu_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
 .dropdown:hover > .dropdown-menu {
   display: block;
 }
-
+.dropdownItem {
+  cursor: pointer;
+}
 .dropdown > .dropdown-toggle:active {
   /*Without this, clicking will make it sticky*/
   pointer-events: none;
+}
+.filter_menu {
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+}
+.filter_menu_active {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark_green);
+}
+.product_list_div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1rem;
+}
+.product_list {
+  width: 15%;
+  margin-left: 10px;
+  border: solid 1px #d5d5d5;
+  padding: 1rem 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.product_info_div {
+  display: flex;
+  justify-content: space-evenly;
+  /* align-items: center; */
+}
+.product_left_div {
+  border: solid 1px #d5d5d5;
+  border-radius: 10px;
 }

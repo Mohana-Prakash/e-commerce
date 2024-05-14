@@ -88,3 +88,50 @@ export const menuArr = [
     icon: <FavoriteBorderIcon className="svg_icon" />,
   },
 ];
+
+export const product_arr = [
+  {
+    name: "Dancing Doll",
+    submenus: ["Dancing Doll"],
+    id: "id_doll",
+    image: "/assets/doll.jpg",
+  },
+  {
+    name: "Hibiscus",
+    submenus: ["Hibiscus Powder", "Henna"],
+    id: "id_hibiscus",
+    image: "/assets/hibiscus.jpg",
+  },
+  {
+    name: "Oil",
+    submenus: [
+      "Amla Hair Oil",
+      "Sesame Oil",
+      "Rosemarry Oil",
+      "Almond Oil",
+      "Groundnut Oil",
+      "Coconut Oil",
+    ],
+    id: "id_oil",
+    image: "/assets/oil.png",
+  },
+];
+
+export const sort_arr = [
+  {
+    label: "Popularity",
+    name: "POPULARITY",
+  },
+  {
+    label: "Price -- Low to High",
+    name: "LOW_HIGH",
+  },
+  {
+    label: "Price -- High to Low",
+    name: "HIGH_LOW",
+  },
+  {
+    label: "Newest First",
+    name: "NEW",
+  },
+];

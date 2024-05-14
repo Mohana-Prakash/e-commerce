@@ -1,56 +1,43 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { dynamicRouteHandler } from "../common/customComp";
+import { product_arr } from "../common/constant";
 
 function SubNav() {
-  let arr = [
-    {
-      name: "Dancing Doll",
-      submenus: ["Thanjavur Dancing Doll"],
-      id: "id_doll",
-    },
-    {
-      name: "Hibiscus",
-      submenus: ["Hibiscus Powder", "Henna"],
-      id: "id_hibiscus",
-    },
-    {
-      name: "Oil",
-      submenus: [
-        "Amla Hair Oil",
-        "Sesame Oil",
-        "Rosemarry Oil",
-        "Almond Oil",
-        "Groundnut Oil",
-        "Coconut Oil",
-      ],
-      id: "id_oil",
-    },
-  ];
-  const menuItems = [
-    { name: "Menu 1", submenus: ["Submenu 1-1", "Submenu 1-2", "Submenu 1-3"] },
-    { name: "Menu 2", submenus: ["Submenu 2-1", "Submenu 2-2", "Submenu 2-3"] },
-    { name: "Menu 3", submenus: ["Submenu 3-1", "Submenu 3-2", "Submenu 3-3"] },
-  ];
+  const router = useRouter();
+
+  const productHandler = (e) => {
+    let object = {
+      product_name: e,
+    };
+    dynamicRouteHandler(router, "/user/product_list", object);
+  };
+
   return (
     <div className="d-flex w-25 m-auto">
-      {arr.map((item, index) => (
+      {product_arr.map((item, index) => (
         <div className="col" key={index}>
-          <div className="dropdown">
+          <div className="dropdown image_menu_div">
+            <div style={{ width: "100%", height: "10vh" }}>
+              <img className="w-100 h-100" alt="product_img" src={item.image} />
+            </div>
             <button
               className="btn dropdown-toggle"
               type="button"
               id={"dropdownMenuButton" + index}
               data-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded="false"
-            >
-              {item.name}
+              aria-expanded="false">
+              <b>{item.name}</b>
             </button>
             <div
               className="dropdown-menu"
-              aria-labelledby={"dropdownMenuButton" + index}
-            >
+              aria-labelledby={"dropdownMenuButton" + index}>
               {item.submenus.map((submenuItem, subIndex) => (
-                <p className="dropdown-item" key={subIndex}>
+                <p
+                  className="dropdown-item my-2"
+                  key={subIndex}
+                  onClick={() => productHandler(submenuItem)}>
                   {submenuItem}
                 </p>
               ))}
