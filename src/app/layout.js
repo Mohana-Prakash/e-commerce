@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Tanjore Nature Nest",
-  description: "Created by Envision ",
+  description: "E Commerce",
 };
 
 export default function RootLayout({ children }) {
