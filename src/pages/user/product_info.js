@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import BuyerLayout from "@/components/layout/buyerLayout";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Button } from "@/components/common/customComp";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
+import LoginModal from "@/components/modals/loginModal";
 
 function Product_Info() {
+  const { data: session } = useSession();
+  const [openModal, setOpenModal] = useState(false);
+  const buyNowHandler = () => {
+    if (session) {
+      toast.success("Successful");
+    } else {
+      setOpenModal(true);
+    }
+  };
   return (
     <div className="product_info_div">
       <div className="product_left_div col-lg-5">
@@ -55,10 +67,21 @@ function Product_Info() {
         </p>
 
         <div className="d-flex justify-content-evenly align-items-center">
-          <Button buttonText="Add to Cart" icon={<AddShoppingCartIcon />} />
-          <Button buttonText="Buy Now" icon={<ShoppingBagIcon />} />
+          <Button
+            buttonText="Add to Cart"
+            icon={<AddShoppingCartIcon />}
+            eventHandler={buyNowHandler}
+          />
+          <Button
+            buttonText="Buy Now"
+            icon={<ShoppingBagIcon />}
+            eventHandler={buyNowHandler}
+          />
         </div>
       </div>
+      {openModal && (
+        <LoginModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
     </div>
   );
 }
