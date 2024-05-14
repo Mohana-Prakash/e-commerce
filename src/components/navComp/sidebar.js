@@ -13,6 +13,7 @@ function Sidebar() {
   const pathname = usePathname();
 
   const routeHandler = async (path) => {
+    router.push(path);
     signOut({ redirect: false }).then((e) => console.log(e));
   };
 
